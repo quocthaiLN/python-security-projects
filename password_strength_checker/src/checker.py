@@ -10,7 +10,7 @@ def check_password_strength(password):
     digit_condition_names = [
         'LOWERCASE CHARACTER',
         'UPPERCASE CHARACTER',
-        'NUMVER',
+        'NUMBER',
         'SPECIAL DIGIT']
 
     base_score = sum(digit_conditions)
@@ -33,4 +33,4 @@ def check_password_strength(password):
     if(len(password) >= 8 and base_score >= 2):
         return 'WEAK, need MORE CHARACTERS' + needed_conditions
     
-    return 'VERY WEEK, need MORE CHARACTERS' + needed_conditions
+    return 'VERY WEAK, need MORE CHARACTERS' + needed_conditions

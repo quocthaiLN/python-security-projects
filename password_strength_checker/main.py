@@ -12,6 +12,9 @@ def main():
 
     print(checker.check_password_strength('Abc12345!@#$%^XYZ'))
 
+    password = getpass.getpass('Your password: ')
+    print(checker.check_password_strength(password))
+
     
 if __name__ == '__main__':
     main()
