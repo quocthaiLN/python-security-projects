@@ -1,8 +1,8 @@
-from src import models
-from src import parser
+from src import Packet
+from src import Rule
 
 def match_packet(packet, rules, default='DENY'):
     for rule in rules:
-        if rule.mathes(packet):
-            return rule.ation
+        if rule.matches(packet):
+            return rule.action
     return default

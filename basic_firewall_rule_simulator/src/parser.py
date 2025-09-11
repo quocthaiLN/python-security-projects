@@ -28,7 +28,7 @@ def load_packets(file_path):
         data = json.load(file)
     for packet_data in data:
         packet = Packet(packet_data['src'],packet_data['dst'], packet_data['proto'],
-                        packet_data['sport', packet_data['dport']])  
-        packets.append(packets)
+                        packet_data['sport'], packet_data['dport'])  
+        packets.append(packet)
     return packets
 
