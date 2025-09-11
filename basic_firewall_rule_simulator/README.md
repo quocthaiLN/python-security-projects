@@ -81,7 +81,7 @@ Basic Firewall Rule Simulator
     tests/ folder: pytest test suite.
     README.md: install, run, ví dụ, license.
 
-6.  Test cases mẫu (bắt buộc thử) 🧪
+6.  Test cases mẫu
     6.1. Rules (rules.txt)
 
     # 1
