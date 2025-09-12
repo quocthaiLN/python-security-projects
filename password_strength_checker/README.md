@@ -1,41 +1,46 @@
-Chức năng chính
+# 🔑 Chức Năng Chính - Password Strength Checker
 
-Nhập mật khẩu từ người dùng
+## 1️⃣ Nhập mật khẩu từ người dùng
 
-Có thể nhập trực tiếp qua terminal (ẩn input để bảo mật càng tốt).
+- Có thể nhập trực tiếp qua **terminal**.
+- Nên ẩn input để bảo mật tốt hơn (dùng `getpass` trong Python).
 
-Kiểm tra các tiêu chí cơ bản của mật khẩu:
+## 2️⃣ Kiểm tra các tiêu chí cơ bản của mật khẩu
 
-Độ dài (>= 8 ký tự).
+- **Độ dài**: `>= 8` ký tự.
+- **Chứa ít nhất 1 chữ hoa**: `A–Z`.
+- **Chứa ít nhất 1 chữ thường**: `a–z`.
+- **Chứa ít nhất 1 chữ số**: `0–9`.
+- **Chứa ít nhất 1 ký tự đặc biệt**:  
+  `!@#$%^&*()-_=+[]{};:,.<>?/`
 
-Chứa ít nhất 1 chữ hoa (A–Z).
+## 3️⃣ Đánh giá độ mạnh của mật khẩu
 
-Chứa ít nhất 1 chữ thường (a–z).
+Chia thành các mức sau:
 
-Chứa ít nhất 1 chữ số (0–9).
+| Mức độ            | Tiêu chí                                           |
+| ----------------- | -------------------------------------------------- |
+| 🔴 **Rất yếu**    | Chỉ toàn chữ thường, độ dài ngắn (< 8 ký tự).      |
+| 🟠 **Yếu**        | Có số hoặc chữ hoa nhưng vẫn quá ngắn (< 8 ký tự). |
+| 🟡 **Trung bình** | Đủ ≥ 8 ký tự và có ít nhất 3 nhóm ký tự khác nhau. |
+| 🟢 **Mạnh**       | Đủ điều kiện cơ bản và dài > 12 ký tự.             |
+| 🟣 **Rất mạnh**   | Dài > 16 ký tự và chứa đầy đủ 4 nhóm ký tự.        |
 
-Chứa ít nhất 1 ký tự đặc biệt (ví dụ: !@#$%^&\*()-\_=+[]{};:,.<>?/).
+## 4️⃣ Kiểm tra mật khẩu phổ biến
 
-Đánh giá độ mạnh mật khẩu (ví dụ chia thành các mức):
+- Đối chiếu với danh sách mật khẩu phổ biến:  
+  `password123`, `123456`, `qwerty`, ...
 
-    Rất yếu (chỉ toàn chữ thường, độ dài ngắn).
+## 5️⃣ Xuất kết quả ra màn hình
 
-    Yếu (có số hoặc chữ hoa nhưng vẫn quá ngắn).
+- In ra **mức độ** của mật khẩu.
+- Nếu chưa đủ mạnh → gợi ý cải thiện, ví dụ:
+  > 💡 _"Hãy thêm ký tự đặc biệt để tăng độ an toàn."_
 
-    Trung bình (đủ 8 ký tự và có ít nhất 3 nhóm ký tự khác nhau).
+## 6️⃣ Viết thành module tái sử dụng
 
-    Mạnh (đủ điều kiện và dài > 12 ký tự).
+- Đóng gói dưới dạng module để có thể `import` vào các dự án khác.
 
-    Rất mạnh (dài > 16 ký tự và đầy đủ 4 nhóm).
+## 7️⃣ Viết test cases
 
-    Kiểm tra mật khẩu có nằm trong danh sách mật khẩu phổ biến (password123, 123456, qwerty, ...) không.
-
-Xuất kết quả ra màn hình:
-
-    In ra mức độ của mật khẩu.
-
-    Gợi ý cải thiện nếu mật khẩu chưa đủ mạnh (ví dụ: "Hãy thêm ký tự đặc biệt để tăng độ an toàn").
-
-Viết thành module để có thể import vào dự án khác.
-
-Viết test cases đơn giản (dùng unittest hoặc pytest).
+- Dùng **unittest** hoặc **pytest** để kiểm thử tự động.
