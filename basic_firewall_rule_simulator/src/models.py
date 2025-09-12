@@ -63,12 +63,9 @@ class Rule:
                 if self.dst_port != packet.dst_port:
                     return False
             return True
-        except AddressValueError:
-            logger.info('Invalid IPv4 address!')
-            raise 
-        except NetmaskValueError:
-            logger.info('Invalid netmask!')
-            raise
+        except (AddressValueError, NetmaskValueError) as e:
+            logger.warning(f'DENY from IP: {packet.src_ip}, port: {packet.src_port} to IP: {packet.dst_ip}, port: {packet.dst_port} by protocol {packet.protocol} because {e}')
+            return None
 
 class Packet:
     def __init__(self, src_ip, dst_ip, protocol, src_port, dst_port):
