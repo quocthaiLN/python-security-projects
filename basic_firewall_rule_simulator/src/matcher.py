@@ -3,7 +3,6 @@ from src import Rule
 from src.logger import logger
 
 def match_packet(packet : Packet, rules : list[Rule], default='DENY'):
-    
     for rule in rules:
         try: 
             if rule.matches(packet):

@@ -2,7 +2,7 @@ from ipaddress import IPv4Address
 from ipaddress import IPv4Network
 from ipaddress import AddressValueError
 from ipaddress import NetmaskValueError
-import logging
+from src.logger import logger
 
 class Rule:
     def __init__(self, action, src_ip, dst_ip, protocol, src_port, dst_port):
@@ -14,7 +14,6 @@ class Rule:
         self.dst_port = dst_port
 
     def matches(self, packet):
-        
         try:
             # check src_ip
             if self.src_ip == 'ANY':
@@ -65,11 +64,11 @@ class Rule:
                     return False
             return True
         except AddressValueError:
-            logging.exception('Invalid IPv4 address!', exc_info=False)
+            logger.info('Invalid IPv4 address!')
+            raise 
         except NetmaskValueError:
-            logging.exception('Invalid netmask!', exc_info=False)
-        finally:
-            return False
+            logger.info('Invalid netmask!')
+            raise
 
 class Packet:
     def __init__(self, src_ip, dst_ip, protocol, src_port, dst_port):
