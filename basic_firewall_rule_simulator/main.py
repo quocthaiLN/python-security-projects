@@ -12,8 +12,8 @@ def main():
     packets = parser.load_packets(sample_packets_path)
 
     for packet in packets:
-        print(matcher.match_packet(packet=packet, rules=rules))
-
+        matcher.match_packet(packet=packet, rules=rules)
+    
 
 if __name__ == '__main__':
     main()

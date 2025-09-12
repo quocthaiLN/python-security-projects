@@ -165,7 +165,7 @@ Basic Firewall Rule Simulator
     ├─ packets/
     │ ├─ sample_packets.json
     ├─ src/
-    │ ├─ basic_firewall_simulator.py # nới điều phối và xử lí
+    │ ├─ basic_firewall_simulator.py # nơi điều phối và xử lí
     │ ├─ parser.py # dùng để đọc rule từ file và chuyển nó thành object để xử lý
     │ ├─ matcher.py # lặp qua từng packet để kiểm tra và trả về ALLOW/DENY/default privacy
     │ ├─ models.py # Rule, Packet classes
