@@ -12,7 +12,7 @@ def match_packet(packet : Packet, rules : list[Rule], default='DENY'):
                 logger.info(f'{rule.action} from IP: {packet.src_ip}, port: {packet.src_port} to IP: {packet.dst_ip}, port: {packet.dst_port} by protocol {packet.protocol}')
                 return rule.action
             elif check == None:
-                return default
+                return False
         return default
     except Exception as e:
         logger.info(f'Unexpected error while matching packet: {e}')

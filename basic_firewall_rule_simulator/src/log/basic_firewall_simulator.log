@@ -1,0 +1,14 @@
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - Run firewall simulator...
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - Load 5 rules from rules\basic_rules.txt
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - Load 10 packets from packets\sample_packets.json
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - ALLOW from IP: 192.168.1.10, port: 12345 to IP: 10.0.0.5, port: 80 by protocol TCP
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - ALLOW from IP: 8.8.8.8, port: 40000 to IP: 10.0.0.5, port: 22 by protocol TCP
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - ALLOW from IP: 192.0.2.1, port: None to IP: 198.51.100.2, port: None by protocol ICMP
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - DENY from IP: 203.0.113.5, port: 5000 to IP: 1.2.3.4, port: 53 by protocol UDP
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - ALLOW from IP: 1.1.1.1, port: 4000 to IP: 2.2.2.2, port: 443 by protocol TCP
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - ALLOW from IP: 192.168.10.5, port: 3456 to IP: 8.8.8.8, port: 53 by protocol UDP
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - DENY from IP: 203.0.113.100, port: 5555 to IP: 10.0.0.1, port: 80 by protocol TCP
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - ALLOW from IP: 10.0.1.2, port: None to IP: 10.0.2.3, port: None by protocol ICMP
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - ALLOW from IP: 192.168.1.50, port: 2222 to IP: 10.0.0.5, port: 23 by protocol TCP
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - WARNING - DENY from IP: 300.1.1.1, port: 4000 to IP: 2.2.2.2, port: 443 by protocol TCP because Octet 300 (> 255) not permitted in '300.1.1.1'
+2025-09-12 21:42:56 - basic_firewall_simulator_logger - INFO - Stop firewall simulator...
