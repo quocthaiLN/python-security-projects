@@ -181,3 +181,65 @@ Acceptance: tất cả test pass, false positive/negative trong giới hạn cho
 - **Sprint 1**: Static scanner, CLI, unit tests.
 - **Sprint 2**: API, bulk processing, basic ML.
 - **Sprint 3**: Dynamic analysis, dashboard, threat-intel.
+
+---
+
+## 🔲 Cấu trúc
+
+    url-scanner/
+    ├── README.md
+    ├── LICENSE
+    ├── pyproject.toml / requirements.txt
+    ├── .env.example
+    ├── .gitignore
+    │
+    ├── src/
+    │   ├── urlscanner/                     # package chính
+    │   │   ├── __init__.py
+    │   │   ├── cli.py                      # entrypoint CLI (argparse / click)
+    │   │   ├── api.py                      # optional: FastAPI app (if làm API)
+    │   │   ├── config.py                   # cấu hình (timeout, user-agent, blocklist path...)
+    │   │   ├── logger.py                   # cấu hình logging
+    │   │   │
+    │   │   ├── core/
+    │   │   │   ├── __init__.py
+    │   │   │   ├── scanner.py              # Scanner class: orchestrate checks
+    │   │   │   ├── features.py             # feature extractor (domain length, tld, has_ip...)
+    │   │   │   ├── rules.py                # tập rule heuristic (rule-based decisions)
+    │   │   │   ├── mlmodel.py              # optional: wrapper load/predict model
+    │   │   │
+    │   │   ├── fetcher/
+    │   │   │   ├── __init__.py
+    │   │   │   ├── http_client.py          # safe requests (timeout, headers, sandboxing)
+    │   │   │   ├── redirect_resolver.py    # resolve redirect chains, expand short URLs
+    │   │   │
+    │   │   ├── utils/
+    │   │   │   ├── __init__.py
+    │   │   │   ├── url_utils.py            # normalize/parse URL, punycode detect
+    │   │   │   ├── whois_utils.py          # optional: whois wrapper (or DNS lookup)
+    │   │   │   ├── ssl_utils.py            # cert checks
+    │   │
+    │   └── scripts/
+    │       ├── sample_bulk_scan.py         # ví dụ chạy bulk (CSV → outputs)
+    │       └── run_server.sh               # script khởi động API / worker
+    │
+    ├── data/
+    │   ├── blocklist.txt                   # list domain/IP xấu (dev)
+    │   ├── whitelist.txt
+    │   ├── sample_urls.csv                 # sample inputs
+    │   └── models/                         # folder lưu model đã train (optional)
+    │
+    ├── tests/
+    │   ├── conftest.py
+    │   ├── test_scanner.py
+    │   ├── test_utils.py
+    │   └── test_integration.py
+    │
+    ├── docs/
+    │   ├── design.md
+    │   ├── API_SPEC.md
+    │   └── threat-intel-sources.md
+    │
+    └── docker/
+        ├── Dockerfile
+        └── docker-compose.yml
