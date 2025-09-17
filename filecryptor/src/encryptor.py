@@ -1,7 +1,7 @@
 import os
 import struct
 from cryptography.fernet import Fernet
-import utils
+from . import utils
 
 # Constants for header
 MAGIC = b'FENC'         # 4 bytes
@@ -21,7 +21,7 @@ def encrypt_file(input_path: str, output_path: str, password: str, iterations: i
             infomation = f.read()
 
         # Sinh salt
-        salt = os.uramdom(SALT_SIZE)
+        salt = os.urandom(SALT_SIZE)
 
         # Chuyển password + salt + iterations thành key
         key = utils.derive_key(password=password, salt=salt, iterations=iterations)
