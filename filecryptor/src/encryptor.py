@@ -41,9 +41,11 @@ def encrypt_file(input_path: str, output_path: str, password: str, iterations: i
             f.write(iteratons_packed)
             f.write(encrypted_infomation)
 
-        print(f"[+] Encrypted '{input_path}' → '{output_path}'")
+        print(f'[+] Encrypted \'{input_path}\' → \'{output_path}!\'')
     except FileNotFoundError:
-        raise FileNotFoundError(f'Can\'t find {input_path}')
+        raise FileNotFoundError(f'Can\'t find {input_path}!')
+    except Exception:
+        raise Exception(f'Unhandling Error')
 
 
 

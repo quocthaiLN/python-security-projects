@@ -32,11 +32,15 @@ Mục tiêu: bảo vệ dữ liệu nhạy cảm của bạn (tài liệu, mật
 FileCrypt/
 │── README.md            # mô tả project
 │── requirements.txt     # thư viện cần cài
-│── filecrypt.py         # script chính (CLI)
-│── utils.py             # hàm tiện ích: sinh key, padding
+│── filecrypt.py         # script chính
 │── examples/
-│    ├── sample.txt
 │    └── secret.docx
+│── src/
+│    └── utils.py # hàm tiện ích: sinh key, padding
+│    └── decryptor.py # mã hóa
+│    └── encryptor.py # giải mã
+│    └── argparser.py # đọc cli
+│    └── __init__.docx
 ```
 
 ---
@@ -46,18 +50,8 @@ FileCrypt/
 Yêu cầu: Python >= 3.8
 
 ```bash
-# Clone project
-git clone https://github.com/yourusername/FileCrypt.git
-cd FileCrypt
-
 # Cài thư viện
 pip install -r requirements.txt
-```
-
-Nội dung `requirements.txt`:
-
-```
-cryptography
 ```
 
 ---
@@ -67,18 +61,18 @@ cryptography
 ### 1. Mã hóa file
 
 ```bash
-python filecrypt.py encrypt examples/sample.txt
+python filecryptor.py -m encrypt -i examples/secret.docx -o examples/encrypted_secret.enc
 ```
 
-👉 Tạo ra `sample.txt.enc`
+👉 Tạo ra `encrypted_secret.enc`
 
 ### 2. Giải mã file
 
 ```bash
-python filecrypt.py decrypt examples/sample.txt.enc
+python filecryptor.py -m decrypt -i examples/encrypted_secret.enc -o examples/decrypted_secret.docx
 ```
 
-👉 Khôi phục thành `sample.txt`
+👉 Khôi phục thành `decrypted_secret.docx`
 
 ---
 
@@ -96,14 +90,3 @@ python filecrypt.py decrypt examples/sample.txt.enc
 - Khái niệm AES, IV, Salt.
 - Cách sinh key từ mật khẩu (PBKDF2).
 - Thiết kế công cụ CLI nhỏ gọn.
-
----
-
-## 🧩 Tiếp theo (gợi ý mở rộng)
-
-- Thêm chế độ AES-GCM để có authenticated encryption (phù hợp cho integrity).
-- Lưu metadata (original filename, timestamp) an toàn.
-- Tích hợp GUI nhỏ (Tkinter) hoặc package thành CLI cài được bằng pip.
-- Thêm testing (pytest) cho các trường hợp encrypt/decrypt, sai mật khẩu, file corrupt.
-
----

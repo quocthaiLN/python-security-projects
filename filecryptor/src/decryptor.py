@@ -1,6 +1,6 @@
 import struct
 from . import utils
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet, InvalidToken
 # Constants for header
 MAGIC = b'FENC'         # 4 bytes
 VERSION = b'\x01'       # 1 byte
@@ -39,17 +39,19 @@ def decrypt_file(input_path: str, output_path: str, password: str) -> None:
             fernet = Fernet(key=key)
             decrypted_information = fernet.decrypt(cipher_text)
     except FileNotFoundError:
-        raise FileNotFoundError(f'Can\'t find {input_path}')
+        raise FileNotFoundError(f'Can\'t find {input_path}!')
+    except InvalidToken:
+        raise InvalidToken(f'Can\'t decrypt file because wrong password or file was changed!')
     except Exception:
-        raise
+        raise Exception(f'Unhandling Error')
     
     try:
         with open(output_path, 'wb') as f:
             f.write(decrypted_information)
     except FileNotFoundError:
-        raise FileNotFoundError(f'Can\'t find {output_path}')
+        raise FileNotFoundError(f'Can\'t find {output_path}!')
     except Exception:
-        raise
+        raise Exception(f'Unhandling Error!')
     
     print(f'[+] Decrypted \'{input_path}\' → \'{output_path}\'')
    
